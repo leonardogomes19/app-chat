@@ -1,0 +1,9 @@
+{
+  "appTitle": "Chat App",
+  "welcomeMessage": "Welcome to the chat app!",
+  "enterMessage": "Type your message...",
+  "sendButton": "Send",
+  "botName": "OpenAI Bot",
+  "botStatus": "Online",
+  "botAltText": "OpenAI Bot Avatar"
+}

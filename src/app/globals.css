@@ -3,21 +3,68 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-color: white;
+  --text-color: black;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background-color: white;
+    --text-color: black;
   }
 }
 
+.dark {
+  --background-color: black;
+  --text-color: white;
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.chat-window {
+  position: relative;
+}
+
+.message {
+  position: relative; /* Garante que o contêiner da mensagem seja o contexto para a animação */
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.message-container {
+  display: inline-block; /* Faz com que o container da mensagem se ajuste ao tamanho do conteúdo */
+  max-width: 80%; /* Define uma largura máxima, ajustável conforme necessário */
+  word-wrap: break-word; /* Garante que o texto longo seja quebrado e não ultrapasse o container */
+}
+
+.user-message {
+  background-color: #e0f7fa; /* Cor de fundo para mensagens do usuário */
+  align-self: flex-end; /* Alinha a mensagem do usuário à direita */
+}
+
+.ai-message {
+  background-color: #fff3e0; /* Cor de fundo para mensagens da IA */
+  align-self: flex-start; /* Alinha a mensagem da IA à esquerda */
+}
+
+.loading-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px; /* Ajuste o tamanho conforme necessário */
+  height: 30px; /* Ajuste o tamanho conforme necessário */
+}
+
+.loading-container .lottie-container {
+  width: 50px;
+  height: 50px;
 }
 
 @layer utilities {
