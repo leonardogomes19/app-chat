@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import ChatWindow from '../components/ChatWindow';
 import MessageInput from '../components/MessageInput';
 import Header from '../components/Header';
+import axios from 'axios';
 //import Navbar from '../components/Navbar';
 
 export default function Home() {
@@ -35,14 +36,13 @@ export default function Home() {
   
     try {
       // Envia a mensagem para a API
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg }),
+      const response = await axios.post('/api/chat', {
+        message: msg
+      }, {
+        headers: { 'Content-Type': 'application/json' }
       });
   
-      const data = await response.json();
-      const simulatedMessage = data.text.trim();
+      const simulatedMessage = response.data.text.trim();
   
       // Atualiza a mensagem recebida da API e marca como não enviando
       setMessages((prev) =>
@@ -67,7 +67,7 @@ export default function Home() {
       <main className={`flex-grow p-4 ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
         <ChatWindow messages={messages} setMessages={setMessages} />
       </main>
-      <footer className="p-4 bg-gray-200 dark:bg-gray-800">
+      <footer className="p-4 bg-gray-200 dark:bg-gray-700">
         <MessageInput onSend={handleSend} onToggleDarkMode={toggleDarkMode} darkMode={darkMode} />
       </footer>
     </div>
